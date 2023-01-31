@@ -1,5 +1,9 @@
 import React from "react";
 
+const box = {
+  backgroundColor: "lightgrey",
+};
+
 class ClassEventButton extends React.Component {
   state = {
     fruits: ["Apple", "Kiwi", "Pomo", "Grapes", "pineapple", "Gova", "Apple"],
@@ -17,7 +21,7 @@ class ClassEventButton extends React.Component {
     return (
       <ul className="list-group">
         {this.state.fruits.map((el, indx) => (
-          <li key={indx.toString()} className="list-group-item">
+          <li key={indx.toString()} style={box} className="list-group-item">
             {el}{" "}
             <button
               className="btn btn-sm btn-primary"
