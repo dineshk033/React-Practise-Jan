@@ -1,6 +1,6 @@
 const UserInfo = ({ image }) => (
-  <div className="row me-0">
-    <div className="col-3">
+  <div className="d-flex align-items-center ">
+    <div className="me-3">
       <img
         src={image}
         className="rounded-circle"
@@ -9,13 +9,13 @@ const UserInfo = ({ image }) => (
         height="40"
       />
     </div>
-    <div className="col-9">
+    <div className="">
       <div className="fs-6 fw-semibold">Dinesh S</div>
       <small>
         dinesh@outlook.com
         <span
           style={{ fontSize: "1em" }}
-          className="material-icons  align-middle"
+          className="material-icons  align-middle ps-2"
         >
           unfold_more
         </span>

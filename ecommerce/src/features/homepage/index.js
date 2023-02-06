@@ -14,7 +14,7 @@ const HomeContainer = () => {
         <div className="row p-2">
           {Features.map((record) => (
             <div className="col" key={record.title}>
-              <CardTemplate2 {...record} />
+              <CardTemplate2 {...record} data={record} />
             </div>
           ))}
         </div>
