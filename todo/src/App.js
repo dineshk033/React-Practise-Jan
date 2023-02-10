@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import InputTask from "./features/addTask/inputTask";
 import MenuBar from "./features/menu";
 import TaskContainer from "./features/task";
 
@@ -18,20 +19,45 @@ function App() {
     { label: "decribing hooks features", favourite: false, checked: true },
     { label: "intro abot use state", favourite: false, checked: false },
   ]);
+  const [count, setCount] = useState(0);
+  /**
+   * it will call in mounting,updating & unmunting phase
+   */
 
-  // useEffect(() => {
-  //   console.log("i'm called in all phase....");
-  // }, );
+  useEffect(() => {
+    console.log("i'm called in all phase....");
+  });
 
+  /**
+   * it will call in only mounting phase
+   */
+  useEffect(() => {
+    console.log("i'm called in mouting phase....");
+    const val = localStorage.getItem("todo");
+    if (val) {
+      setTodo(JSON.parse(val));
+    }
+  }, []);
+
+  /**
+   * it will call in only updating phase when change in states or props or JSX element
+   */
   // useEffect(() => {
-  //   console.log("i'm called in mouting phase....");
-  // }, []);
+  //   console.log("i'm called in changing todo variables phase....");
+  // }, [todo]);
+  // useEffect(() => {
+  //   console.log("i'm called in changing count value...");
+  // }, [count]);
 
   const handleAdd = () => {
-    setTodo([
+    const temp = [
       ...todo,
       { label: "new records has been added", favourite: false, checked: false },
-    ]);
+    ];
+    setTodo(temp);
+
+    localStorage.setItem("todo", JSON.stringify(temp));
+    // setCount(count + 1);
   };
 
   const updateFavourite = (arg) => {
@@ -54,6 +80,10 @@ function App() {
     console.log(temp, arg);
     setTodo(temp);
   };
+  const removeItem = (arg) => {
+    const temp = todo.filter((content) => content.label !== arg.label);
+    setTodo(temp);
+  };
   return (
     <div className="container-fluid vh-100">
       <div className="row h-100">
@@ -61,7 +91,12 @@ function App() {
           <MenuBar handleClick={handleAdd} />
         </div>
         <div className="col-9 h-100 bg-primary bg-opacity-50 text-dark">
-          <TaskContainer list={todo} updateFavourite={updateFavourite} />
+          <TaskContainer
+            list={todo}
+            updateFavourite={updateFavourite}
+            removeItem={removeItem}
+          />
+          <InputTask />
         </div>
       </div>
     </div>

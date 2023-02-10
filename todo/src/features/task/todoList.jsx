@@ -1,6 +1,10 @@
+import { useEffect } from "react";
 import TodoItem from "./todoItem";
 
-function TodoList({ list, updateFavourite }) {
+function TodoList({ list, updateFavourite, removeItem }) {
+  useEffect(() => {
+    console.log("change in todolist");
+  }, [list]);
   return (
     <div>
       <h5 className="fs-4 text-light mb-4">
@@ -10,6 +14,7 @@ function TodoList({ list, updateFavourite }) {
         <TodoItem
           key={task.label}
           record={task}
+          removeItem={removeItem}
           updateFavourite={updateFavourite}
         />
       ))}

@@ -1,9 +1,13 @@
 import TodoList from "./todoList";
 
-const TaskContainer = ({ list, updateFavourite }) => {
+const TaskContainer = ({ list, updateFavourite, removeItem }) => {
   return (
     <div className="p-5">
-      <TodoList list={list} updateFavourite={updateFavourite} />
+      <TodoList
+        list={list}
+        updateFavourite={updateFavourite}
+        removeItem={removeItem}
+      />
     </div>
   );
 };
