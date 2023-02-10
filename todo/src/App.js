@@ -84,6 +84,11 @@ function App() {
     const temp = todo.filter((content) => content.label !== arg.label);
     setTodo(temp);
   };
+
+  const addTask = (value) => {
+    console.log([...todo, value]);
+    setTodo([...todo, value]);
+  };
   return (
     <div className="container-fluid vh-100">
       <div className="row h-100">
@@ -96,7 +101,7 @@ function App() {
             updateFavourite={updateFavourite}
             removeItem={removeItem}
           />
-          <InputTask />
+          <InputTask addTask={addTask} />
         </div>
       </div>
     </div>

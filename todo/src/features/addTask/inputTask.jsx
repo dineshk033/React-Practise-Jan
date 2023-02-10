@@ -1,8 +1,19 @@
 import { useState } from "react";
+import { object, boolean, string } from "yup";
 
-const InputTask = () => {
-  const [task, setTask] = useState({ checked: false, taskLabel: "" });
-  const [taskLabel, setTaskLabel] = useState("test");
+const obj = object({
+  checked: boolean(),
+  label: string().required("required").min(10, "should be 10").max(20),
+});
+
+const InputTask = ({ addTask }) => {
+  const [task, setTask] = useState({
+    checked: false,
+    label: "",
+    favourite: false,
+  });
+  const [error, setError] = useState(null);
+  //   const [taskLabel, setTaskLabel] = useState("test");
   const handleChange = (event) => {
     // const tmp = {};
     // tmp[event.target.name] = event.target.value;
@@ -14,10 +25,26 @@ const InputTask = () => {
     }
     setTask({ ...task, [event.target.name]: Value });
   };
-  console.log(task);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(task);
+    try {
+      await obj.validate(task);
+      addTask(task);
+      //   await obj.validate(task, { abortEarly: false });
+    } catch (err) {
+      console.log(err.errors);
+      setError(err.errors[0]);
+    }
+  };
+
   return (
     <div className="card">
-      <form className="card-body d-flex justify-content-evenly">
+      <form
+        className="card-body d-flex justify-content-evenly"
+        onSubmit={handleSubmit}
+      >
         <div className="d-flex w-75">
           <input
             className="form-check-input me-3"
@@ -28,8 +55,8 @@ const InputTask = () => {
           />
           <input
             className="form-control  form-control-sm me-3"
-            value={task.taskLabel}
-            name="taskLabel"
+            value={task.label}
+            name="label"
             onChange={handleChange}
             type="text"
           />
@@ -38,6 +65,7 @@ const InputTask = () => {
           Add
         </button>
       </form>
+      {error && <small className="text-danger"> {error}</small>}
     </div>
   );
 };
