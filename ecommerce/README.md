@@ -6,43 +6,6 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
-### `Folder Structure`
-
-    - src
-        assets -> keep images & icon
-        features
-            core
-                header
-                footer
-                homepage
-                    banner
-                    productList
-                    Productoffer
-                detailedPage
-                    imageGallery
-                    productInfo
-                    productDesc
-        shared
-            components
-                button
-                card
-                    product-template1
-                breadCrumps
-            utility
-                titleTrimmer.js
-            styled
-                Title
-                Subtitle
-                spacer
-                Input
-        pages
-            homepage.js
-            detailpage.js
-            cart.js
-        axios
-        redux
-        pages
-
 ### `npm start`
 
 Runs the app in the development mode.\

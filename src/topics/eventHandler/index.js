@@ -1,3 +1,6 @@
+import { Heading } from "../styled";
+import classes from "./index.module.css";
+
 function EventHandler() {
   const handleClick = (arg) => {
     alert("Welcome" + arg);
@@ -7,7 +10,8 @@ function EventHandler() {
     console.log(event);
   }
   return (
-    <form className="card">
+    <form className={classes.container + " p-5"}>
+      <Heading color="primary">Event handlign</Heading>
       <button className="btn btn-primary" onClick={() => handleClick("react")}>
         alert
       </button>
