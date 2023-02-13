@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import "./App.css";
 import InputTask from "./features/addTask/inputTask";
 import MenuBar from "./features/menu";
 import TaskContainer from "./features/task";
+import { RouterConfig } from "./router";
+
+const router = createBrowserRouter(RouterConfig);
 
 /***
  * title,favourite,checked
@@ -90,21 +94,24 @@ function App() {
     setTodo([...todo, value]);
   };
   return (
-    <div className="container-fluid vh-100">
-      <div className="row h-100">
-        <div className="col-3 h-100 bg-dark  bg-opacity-10 text-dark">
-          <MenuBar handleClick={handleAdd} />
+    <RouterProvider router={router}>
+      {/* <div className="container-fluid vh-100">
+        <div className="row h-100">
+          <div className="col-3 h-100 bg-dark  bg-opacity-10 text-dark">
+            <MenuBar handleClick={handleAdd} />
+          </div>
+          <div className="col-9 h-100 bg-primary bg-opacity-50 text-dark">
+            <Outlet />
+            <TaskContainer
+              list={todo}
+              updateFavourite={updateFavourite}
+              removeItem={removeItem}
+            />
+            <InputTask addTask={addTask} />
+          </div>
         </div>
-        <div className="col-9 h-100 bg-primary bg-opacity-50 text-dark">
-          <TaskContainer
-            list={todo}
-            updateFavourite={updateFavourite}
-            removeItem={removeItem}
-          />
-          <InputTask addTask={addTask} />
-        </div>
-      </div>
-    </div>
+      </div> */}
+    </RouterProvider>
   );
 }
 
