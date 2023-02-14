@@ -1,3 +1,5 @@
+import TodoList from "../features/task/todoList";
+import HomeTodo from "../pages/homeTodo";
 import Layout from "../pages/Layout";
 
 export const RouterConfig = [
@@ -6,17 +8,17 @@ export const RouterConfig = [
     element: <Layout />,
     children: [
       {
-        path: "cred",
-        element: <div>WElcoe credo</div>,
+        path: "/",
+        element: <HomeTodo />,
       },
       {
-        path: "hell",
-        element: <div>WElcoe to hell</div>,
+        path: "taskList",
+        element: <TodoList />,
       },
     ],
   },
   {
-    path: "/credo",
+    path: "/pending",
     element: <div>Hello credo!</div>,
   },
 ];
