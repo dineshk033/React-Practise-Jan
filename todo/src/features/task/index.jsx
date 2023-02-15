@@ -1,10 +1,14 @@
+import { useContext } from "react";
+import { TodoContext } from "../../context/todo-context";
 import TodoList from "./todoList";
 
 const TaskContainer = ({ list, updateFavourite, removeItem }) => {
+  const todoValue = useContext(TodoContext);
+  console.log(todoValue, "------------->");
   return (
     <div className="p-5">
       <TodoList
-        list={list}
+        list={todoValue}
         updateFavourite={updateFavourite}
         removeItem={removeItem}
       />

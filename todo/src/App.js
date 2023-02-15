@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import "./App.css";
+import TodoContextProvider from "./context/todo-context";
+import UserContextProvider from "./context/user-context";
 import InputTask from "./features/addTask/inputTask";
 import MenuBar from "./features/menu";
 import TaskContainer from "./features/task";
@@ -94,24 +96,11 @@ function App() {
     setTodo([...todo, value]);
   };
   return (
-    <RouterProvider router={router}>
-      {/* <div className="container-fluid vh-100">
-        <div className="row h-100">
-          <div className="col-3 h-100 bg-dark  bg-opacity-10 text-dark">
-            <MenuBar handleClick={handleAdd} />
-          </div>
-          <div className="col-9 h-100 bg-primary bg-opacity-50 text-dark">
-            <Outlet />
-            <TaskContainer
-              list={todo}
-              updateFavourite={updateFavourite}
-              removeItem={removeItem}
-            />
-            <InputTask addTask={addTask} />
-          </div>
-        </div>
-      </div> */}
-    </RouterProvider>
+    <TodoContextProvider>
+      <UserContextProvider>
+        <RouterProvider router={router}></RouterProvider>
+      </UserContextProvider>
+    </TodoContextProvider>
   );
 }
 
