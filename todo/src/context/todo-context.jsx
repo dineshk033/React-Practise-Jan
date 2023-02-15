@@ -10,8 +10,13 @@ const TodoContextProvider = (props) => {
     { label: "Created by context concept", favourite: false, checked: true },
   ]);
 
+  const updateTodo = (arg) => {
+    setTodo([...todo, arg]);
+  };
   return (
-    <TodoContext.Provider value={todo}>{props.children}</TodoContext.Provider>
+    <TodoContext.Provider value={{ todo: todo, updateTodo: updateTodo }}>
+      {props.children}
+    </TodoContext.Provider>
   );
 };
 
