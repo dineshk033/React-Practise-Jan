@@ -1,4 +1,4 @@
-const TodoItem = ({ record, updateFavourite, removeItem }) => (
+const TodoItem = ({ record, updateTask, removeItem }) => (
   <div className="card mb-1">
     <div
       style={{ padding: "0.75rem" }}
@@ -8,16 +8,17 @@ const TodoItem = ({ record, updateFavourite, removeItem }) => (
         <input
           className="form-check-input me-3"
           type="checkbox"
-          defaultChecked={record.checked}
+          onClick={() => updateTask(record)}
+          defaultChecked={record.completed}
         />
         <label
           className={
-            record.checked
+            record.completed
               ? "text-decoration-line-through form-check-label"
               : "form-check-label"
           }
         >
-          {record.label}
+          {record.todo}
         </label>
       </div>
       <div>
@@ -29,14 +30,14 @@ const TodoItem = ({ record, updateFavourite, removeItem }) => (
         >
           delete
         </span>
-        <span
+        {/* <span
           onClick={() => updateFavourite(record)}
           role="button"
           style={{ fontSize: "1.2em" }}
           className="material-icons"
         >
           {record.favourite ? "star" : "star_border"}
-        </span>
+        </span> */}
       </div>
     </div>
   </div>

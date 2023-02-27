@@ -1,0 +1,10 @@
+.spinner {
+  position: absolute;
+  height: 100%;
+  width: 89%;
+  box-sizing: border-box;
+  align-items: center;
+  z-index: 99;
+  cursor: not-allowed;
+  pointer-events: none;
+}

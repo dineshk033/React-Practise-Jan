@@ -47,13 +47,6 @@ const InputTask = ({ addTask }) => {
       >
         <div className="d-flex w-75">
           <input
-            className="form-check-input me-3"
-            name="checked"
-            checked={task.checked}
-            onChange={handleChange}
-            type="checkbox"
-          />
-          <input
             className="form-control  form-control-sm me-3"
             value={task.label}
             name="label"

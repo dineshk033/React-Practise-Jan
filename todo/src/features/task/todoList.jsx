@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import TodoItem from "./todoItem";
 
-function TodoList({ list, updateFavourite, removeItem }) {
-  useEffect(() => {
-    console.log("change in todolist");
-  }, [list]);
+function TodoList({ list, updateFavourite, removeItem, updateTask }) {
+  // useEffect(() => {
+  //   console.log("change in todolist");
+  // }, [list]);
   return (
     <div>
       <h5 className="fs-4 text-light mb-4">
@@ -12,9 +12,10 @@ function TodoList({ list, updateFavourite, removeItem }) {
       </h5>
       {list.map((task) => (
         <TodoItem
-          key={task.label}
+          key={task.id}
           record={task}
           removeItem={removeItem}
+          updateTask={updateTask}
           updateFavourite={updateFavourite}
         />
       ))}

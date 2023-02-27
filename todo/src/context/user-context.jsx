@@ -1,15 +1,25 @@
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 export const UserContext = React.createContext();
 
-const UserContextProvider = (props) => {
-  const [user, setUser] = useState({
-    username: "dinesh",
-    email: "dineh@gmail.com",
-  });
+function useAuth() {
+  const [user, setUser] = React.useState(false);
 
+  return {
+    user,
+    login(arg, callback) {
+      setUser(arg);
+      callback();
+    },
+  };
+}
+
+const UserContextProvider = (props) => {
+  const value = useAuth();
+  console.log(value.user, "cont+++++++++++");
   return (
-    <UserContext.Provider value={user}>{props.children}</UserContext.Provider>
+    <UserContext.Provider value={value}>{props.children}</UserContext.Provider>
   );
 };
 

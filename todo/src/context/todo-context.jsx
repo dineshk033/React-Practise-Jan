@@ -1,14 +1,22 @@
 import React from "react";
+import { useContext } from "react";
+import { useEffect } from "react";
 import { useState } from "react";
+import { fetchTodo } from "./fetch-todo";
+import { UserContext } from "./user-context";
 export const TodoContext = React.createContext();
 
 const TodoContextProvider = (props) => {
-  const [todo, setTodo] = useState([
-    { label: "intro abt hooks", favourite: true, checked: true },
-    { label: "decribing hooks features", favourite: false, checked: true },
-    { label: "intro abot use state", favourite: false, checked: false },
-    { label: "Created by context concept", favourite: false, checked: true },
-  ]);
+  const { user } = useContext(UserContext);
+  const [todo, setTodo] = useState([]);
+
+  useEffect(() => {
+    if (user) {
+      fetchTodo(user.id, (data) => {
+        setTodo(data);
+      });
+    }
+  }, [user]);
 
   const updateTodo = (arg) => {
     setTodo([...todo, arg]);

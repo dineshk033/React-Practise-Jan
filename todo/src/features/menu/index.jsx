@@ -1,7 +1,10 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../context/user-context";
 import UserInfo from "./userInfo";
 
 const MenuBar = ({ handleClick }) => {
+  const { user } = useContext(UserContext);
   return (
     <div className="py-3 px-2 d-grid  gap-3">
       <UserInfo />
@@ -20,15 +23,23 @@ const MenuBar = ({ handleClick }) => {
         >
           Task List
         </Link>
-        <Link class="list-group-item  list-group-item-action list-group-item-primary ">
+        <Link
+          to="/pending"
+          class="list-group-item  list-group-item-action list-group-item-primary "
+        >
           Pending Task
         </Link>
         <Link class="list-group-item  list-group-item-action list-group-item-primary ">
           Completed List
         </Link>
-        <Link class="list-group-item  list-group-item-action list-group-item-primary ">
-          Login
-        </Link>
+        {!user && (
+          <Link
+            to="/login"
+            class="list-group-item  list-group-item-action list-group-item-primary "
+          >
+            Login
+          </Link>
+        )}
       </ul>
     </div>
   );
