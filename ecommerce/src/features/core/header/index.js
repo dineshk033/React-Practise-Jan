@@ -1,9 +1,18 @@
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+
+const StyledLink = styled(Link)`
+  &:hover {
+    text-color: #ffff !important;
+  }
+`;
+
 function Header() {
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary bg-primary text-white">
+    <nav className="navbar navbar-expand-lg bg-body-tertiary bg-primary text-light">
       <div className="container-fluid">
         <a className="navbar-brand" href="#">
-          Navbar
+          COMET ECOMMERCE
         </a>
         <button
           className="navbar-toggler"
@@ -17,24 +26,24 @@ function Header() {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav">
+          <ul className="navbar-nav ">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
+              <StyledLink className="nav-link" to="/">
                 Home
-              </a>
+              </StyledLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                Features
-              </a>
+              <Link className="nav-link" to="/cart">
+                cart
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                Pricing
-              </a>
+              <Link className="nav-link" to="/login">
+                Login
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link disabled">Disabled</a>
+              <a className="nav-link disabled">Signup</a>
             </li>
           </ul>
         </div>
