@@ -1,3 +1,4 @@
+import { Provider } from "react-redux";
 import {
   BrowserRouter,
   createBrowserRouter,
@@ -6,6 +7,8 @@ import {
 import "./App.css";
 import TodoContextProvider from "./context/todo-context";
 import UserContextProvider from "./context/user-context";
+import useToggle from "./hooks/useToogle";
+import { store } from "./redux/store";
 
 import { RouterConfig, RouterConfiguration } from "./router";
 
@@ -15,15 +18,22 @@ import { RouterConfig, RouterConfiguration } from "./router";
  * title,favourite,checked
  */
 function App() {
+  const [status, toggleStatus] = useToggle(false);
+  console.log(status, "+++++++++++++++++togglestatus");
   return (
-    <BrowserRouter>
-      <UserContextProvider>
-        <TodoContextProvider>
-          <RouterConfiguration />
-          {/* <RouterProvider router={router}></RouterProvider> */}
-        </TodoContextProvider>
-      </UserContextProvider>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <UserContextProvider>
+          {/* <button onClick={() => toggleStatus()}>
+            Toggle {status.toString()}
+          </button> */}
+          <TodoContextProvider>
+            <RouterConfiguration />
+            {/* <RouterProvider router={router}></RouterProvider> */}
+          </TodoContextProvider>
+        </UserContextProvider>
+      </BrowserRouter>
+    </Provider>
   );
 }
 

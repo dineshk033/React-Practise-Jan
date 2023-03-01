@@ -18,10 +18,10 @@ const MenuBar = ({ handleClick }) => {
           Add Task
         </Link>
         <Link
-          to="/taskList"
+          to="/redux"
           class="list-group-item  list-group-item-action list-group-item-primary "
         >
-          Task List
+          Task Redux
         </Link>
         <Link
           to="/pending"

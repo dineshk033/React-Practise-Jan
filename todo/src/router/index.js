@@ -5,6 +5,7 @@ import HomeTodo from "../pages/homeTodo";
 import Layout from "../pages/Layout";
 import LoginPage from "../pages/login-page.jsx";
 import PendingPage from "../pages/pending-page";
+import ReduxTodo from "../pages/todo";
 
 export const RouterConfig = [
   {
@@ -48,6 +49,7 @@ export const RouterConfiguration = () => (
       />
       <Route path="taskList" element={<TodoList />} />
       <Route path="pending" element={<PendingPage />} />
+      <Route path="redux" element={<ReduxTodo />} />
     </Route>
     <Route path="/login" element={<LoginPage />} />
   </Routes>

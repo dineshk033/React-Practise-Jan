@@ -1,15 +1,18 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { object, boolean, string } from "yup";
+import { addtoTodo } from "../../redux/action";
 
 const obj = object({
-  checked: boolean(),
-  label: string().required("required").min(10, "should be 10").max(20),
+  completed: boolean(),
+  todo: string().required("required").min(10, "should be 10").max(20),
 });
 
 const InputTask = ({ addTask }) => {
+  const dispatch = useDispatch();
   const [task, setTask] = useState({
-    checked: false,
-    label: "",
+    completed: false,
+    todo: "",
     favourite: false,
   });
   const [error, setError] = useState(null);
@@ -20,8 +23,8 @@ const InputTask = ({ addTask }) => {
     console.log(event.target.value, event.target.name);
     // setTaskLabel(event.target.value);
     let Value = event.target.value;
-    if (event.target.name === "checked") {
-      Value = event.target.checked;
+    if (event.target.name === "completed") {
+      Value = event.target.completed;
     }
     setTask({ ...task, [event.target.name]: Value });
   };
@@ -29,6 +32,9 @@ const InputTask = ({ addTask }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(task);
+    const temp = { ...task, id: Math.floor(Math.random() * 13) };
+    console.log(temp);
+    dispatch(addtoTodo(temp));
     try {
       await obj.validate(task);
       addTask(task);
@@ -48,8 +54,8 @@ const InputTask = ({ addTask }) => {
         <div className="d-flex w-75">
           <input
             className="form-control  form-control-sm me-3"
-            value={task.label}
-            name="label"
+            value={task.todo}
+            name="todo"
             onChange={handleChange}
             type="text"
           />
