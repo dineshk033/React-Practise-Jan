@@ -6,6 +6,10 @@ function RequireAuth({ children }) {
   let auth = useContext(UserContext);
   let location = useLocation();
   console.log(auth, "require------------>");
+  // if (!auth.user === "admin") {
+  //   // return <Navigate to="/" state={{ from: location }} replace />;
+  //   return <div>You don't have permission to add records</div>;
+  // }
   if (!auth.user) {
     // Redirect them to the /login page, but save the current location they were
     // trying to go to when they were redirected. This allows us to send them
