@@ -3,6 +3,7 @@ import TodoItem from "../features/task/todoItem";
 
 const ReduxTodo = () => {
   const todo = useSelector((data) => data);
+  console.log(todo, "redux_________++++++++++++=");
   const dummy = () => {};
   return (
     <>

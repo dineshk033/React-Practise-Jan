@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { object, boolean, string } from "yup";
-import { addtoTodo } from "../../redux/action";
+import { addtoTodo } from "../../redux/reducer";
+// import { addtoTodo } from "../../redux/action";
 
 const obj = object({
   completed: boolean(),
@@ -37,7 +38,7 @@ const InputTask = ({ addTask }) => {
     dispatch(addtoTodo(temp));
     try {
       await obj.validate(task);
-      addTask(task);
+      // addTask(task);
       //   await obj.validate(task, { abortEarly: false });
     } catch (err) {
       console.log(err.errors);
